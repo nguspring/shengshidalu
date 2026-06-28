@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "角色": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "好感度": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "default": 50,
+            "type": "number"
+          }
+        },
+        "服从度": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "default": 0,
+            "type": "number"
+          }
+        },
+        "堕落度": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "default": 0,
+            "type": "number"
+          }
+        },
+        "契约阶段": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "default": "无",
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "好感度",
+        "服从度",
+        "堕落度",
+        "契约阶段"
+      ]
+    },
+    "世界": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "当前区域": {
+          "default": "晨露镇",
+          "type": "string"
+        },
+        "魔宫层数": {
+          "default": 0,
+          "type": "number"
+        },
+        "时间": {
+          "default": "白天",
+          "type": "string"
+        },
+        "nsfw模式": {
+          "default": "关闭",
+          "type": "string",
+          "enum": [
+            "关闭",
+            "开启"
+          ]
+        },
+        "在场角色": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "玩家": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "身份": {
+          "default": "冒险者",
+          "type": "string"
+        },
+        "阵营偏向": {
+          "default": "中立",
+          "type": "string"
+        },
+        "魔力同步率": {
+          "default": 0,
+          "type": "number"
+        },
+        "当前主角": {
+          "default": "卡贝尔",
+          "type": "string",
+          "enum": [
+            "卡贝尔",
+            "奥露菲",
+            "妲克妮丝",
+            "菲莉",
+            "艾米丽雅",
+            "海伦娜"
+          ]
+        }
+      }
+    },
+    "剧情": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "阶段": {
+          "default": "开场",
+          "type": "string"
+        },
+        "关键事件": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "default": false,
+            "type": "boolean"
+          }
+        }
+      },
+      "required": [
+        "关键事件"
+      ]
+    }
+  }
+}
