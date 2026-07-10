@@ -41,7 +41,7 @@ const store = useDataStore();
 // 新 schema 中 角色是嵌套对象：角色[name].好感度 / .服从度 / .堕落度 / .契约阶段
 // 主角标记取 世界.当前主角（新 schema 顶层字段）
 const rows = computed(() => {
-  const p = store.data.value;
+  const p = store.data;
   const protagonist = p.世界.当前主角;
   return p.世界.在场角色.map(name => {
     const charData = p.角色[name];

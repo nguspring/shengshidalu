@@ -19,8 +19,8 @@ import SceneSection from './components/SceneSection.vue';
 
 const store = useDataStore();
 
-// store.data 是 Ref<Schema>，需 .value 访问内部值；computed 让其具备响应式
-const present_chars = computed(() => store.data.value.世界.在场角色);
+// store.data 是 reactive 对象，直接使用；在场角色列表为空时不渲染该区（开场白时在场角色为空数组）
+const present_chars = computed(() => store.data.世界.在场角色);
 // 新 schema：角色为 z.record(key=角色名, value={好感度,服从度,...})，取 keys 得到全部角色名
-const all_chars = computed(() => Object.keys(store.data.value.角色));
+const all_chars = computed(() => Object.keys(store.data.角色));
 </script>

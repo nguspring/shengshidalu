@@ -1,5 +1,5 @@
 // MVU 数据 store：通过 defineMvuDataStore 连接酒馆助手 stat_data 变量
-// store.data 即 schema.ts 定义的变量结构（Ref，模板自动解包）
+// store.data 是 reactive 对象，模板自动解包，setup 中直接读取字段即可
 import { defineMvuDataStore } from '@util/mvu';
 import { Schema } from '../../schema';
 

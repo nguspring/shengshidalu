@@ -20,7 +20,7 @@ import { useDataStore } from '../store';
 const store = useDataStore();
 
 // 玩家区三项：身份 / 阵营偏向 / 魔力同步率（带进度条）
-const identity = computed(() => store.data.value.玩家.身份);
-const alignment = computed(() => store.data.value.玩家.阵营偏向);
-const magic_sync = computed(() => store.data.value.玩家.魔力同步率);
+const identity = computed(() => store.data.玩家.身份);
+const alignment = computed(() => store.data.玩家.阵营偏向);
+const magic_sync = computed(() => store.data.玩家.魔力同步率);
 </script>

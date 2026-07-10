@@ -38,7 +38,7 @@ const store = useDataStore();
  * 每行附 isPresent（是否在场，不在场半透明）+ isProtagonist（主角高亮）
  */
 const rows = computed(() => {
-  const p = store.data.value;
+  const p = store.data;
   const protagonist = p.玩家.当前扮演主角;
   const present = p.世界.在场角色;
   return Object.keys(p.角色).map(name => {
