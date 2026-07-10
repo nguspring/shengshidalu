@@ -9,7 +9,7 @@
         :class="{ 'msb-char-row-pro': row.isProtagonist }"
       >
         <span class="msb-char-name" :class="{ 'msb-char-name-pro': row.isProtagonist }">{{ row.name }}</span>
-        <!-- 主角跳过好感/服从列，只显示堕落度（与原 EJS 逻辑一致） -->
+        <!-- 主角跳过好感/服从列，只显示堕落度 -->
         <template v-if="!row.isProtagonist">
           <span class="msb-stat">
             <i class="fa-solid fa-heart" style="color: #ff6b9d"></i>
@@ -38,19 +38,20 @@ import { useDataStore } from '../store';
 
 const store = useDataStore();
 
-// 预计算每行数据：主角标记 + 三项属性（主角的 aff/obey 设 null 不渲染）
+// 新 schema 中 角色是嵌套对象：角色[name].好感度 / .服从度 / .堕落度 / .契约阶段
+// 主角标记取 世界.当前主角（新 schema 顶层字段）
 const rows = computed(() => {
   const p = store.data.value;
-  const protagonist = p.玩家.当前主角;
+  const protagonist = p.世界.当前主角;
   return p.世界.在场角色.map(name => {
+    const charData = p.角色[name];
     const isProtagonist = name === protagonist;
     return {
       name,
       isProtagonist,
-      corr: p.角色.堕落度[name] ?? 0,
-      // 主角的 aff/obey 用 null 占位（模板 v-if 不渲染），避免显示主角对自己的好感/服从
-      aff: isProtagonist ? null : (p.角色.好感度[name] ?? 0),
-      obey: isProtagonist ? null : (p.角色.服从度[name] ?? 0),
+      corr: charData?.堕落度 ?? 0,
+      aff: isProtagonist ? null : (charData?.好感度 ?? 0),
+      obey: isProtagonist ? null : (charData?.服从度 ?? 0),
     };
   });
 });

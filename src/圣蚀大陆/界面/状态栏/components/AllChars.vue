@@ -19,6 +19,8 @@
           <span class="msb-bar-wrap msb-bar-mini"><span class="msb-bar msb-bar-corr" :style="{ width: row.corr + '%' }"></span></span>
           <span class="msb-stat-val">{{ row.corr }}</span>
         </span>
+        <!-- 契约阶段非"无"时显示标签 -->
+        <span v-if="row.contract !== '无'" class="msb-stat-lbl" style="color: #d2a4e8">{{ row.contract }}</span>
       </div>
     </div>
   </details>
@@ -30,18 +32,25 @@ import { useDataStore } from '../store';
 
 const store = useDataStore();
 
-// 全部角色名单：从好感度 record 的 keys 取，避免硬编码；initvar 补几个就显示几个
-// 每行附 isPresent（是否在场，不在场半透明）+ isProtagonist（主角高亮）
+/**
+ * 全部角色名单：从角色 record 的 keys 取，避免硬编码
+ * 新 schema 角色为嵌套对象：角色[name].好感度 / 堕落度 / 契约阶段
+ * 每行附 isPresent（是否在场，不在场半透明）+ isProtagonist（主角高亮）
+ */
 const rows = computed(() => {
   const p = store.data.value;
-  const protagonist = p.玩家.当前主角;
+  const protagonist = p.玩家.当前扮演主角;
   const present = p.世界.在场角色;
-  return Object.keys(p.角色.好感度).map(name => ({
-    name,
-    isProtagonist: name === protagonist,
-    isPresent: present.includes(name),
-    aff: p.角色.好感度[name] ?? 0,
-    corr: p.角色.堕落度[name] ?? 0,
-  }));
+  return Object.keys(p.角色).map(name => {
+    const char = p.角色[name];
+    return {
+      name,
+      isProtagonist: name === protagonist,
+      isPresent: present.includes(name),
+      aff: char.好感度,
+      corr: char.堕落度,
+      contract: char.契约阶段,
+    };
+  });
 });
 </script>
