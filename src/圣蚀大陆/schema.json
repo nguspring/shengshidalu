@@ -2,73 +2,51 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
-    "角色": {
-      "default": {},
-      "type": "object",
-      "properties": {
-        "好感度": {
-          "type": "object",
-          "propertyNames": {
-            "type": "string"
-          },
-          "additionalProperties": {
-            "default": 50,
-            "type": "number"
-          }
-        },
-        "服从度": {
-          "type": "object",
-          "propertyNames": {
-            "type": "string"
-          },
-          "additionalProperties": {
-            "default": 0,
-            "type": "number"
-          }
-        },
-        "堕落度": {
-          "type": "object",
-          "propertyNames": {
-            "type": "string"
-          },
-          "additionalProperties": {
-            "default": 0,
-            "type": "number"
-          }
-        },
-        "契约阶段": {
-          "type": "object",
-          "propertyNames": {
-            "type": "string"
-          },
-          "additionalProperties": {
-            "default": "无",
-            "type": "string"
-          }
-        }
-      },
-      "required": [
-        "好感度",
-        "服从度",
-        "堕落度",
-        "契约阶段"
-      ]
-    },
     "世界": {
       "default": {},
       "type": "object",
       "properties": {
+        "当前主角": {
+          "default": "卡贝尔",
+          "type": "string",
+          "enum": [
+            "卡贝尔",
+            "奥露菲",
+            "妲克妮丝",
+            "菲莉",
+            "艾米丽雅",
+            "海伦娜"
+          ]
+        },
         "当前区域": {
           "default": "晨露镇",
           "type": "string"
         },
-        "魔宫层数": {
+        "当前楼层": {
           "default": 0,
           "type": "number"
         },
         "时间": {
-          "default": "白天",
-          "type": "string"
+          "default": {},
+          "type": "object",
+          "properties": {
+            "年": {
+              "default": 1024,
+              "type": "number"
+            },
+            "月": {
+              "default": 3,
+              "type": "number"
+            },
+            "日": {
+              "default": 15,
+              "type": "number"
+            },
+            "时": {
+              "default": 22,
+              "type": "number"
+            }
+          }
         },
         "nsfw模式": {
           "default": "关闭",
@@ -91,19 +69,7 @@
       "default": {},
       "type": "object",
       "properties": {
-        "身份": {
-          "default": "冒险者",
-          "type": "string"
-        },
-        "阵营偏向": {
-          "default": "中立",
-          "type": "string"
-        },
-        "魔力同步率": {
-          "default": 0,
-          "type": "number"
-        },
-        "当前主角": {
+        "当前扮演主角": {
           "default": "卡贝尔",
           "type": "string",
           "enum": [
@@ -114,6 +80,52 @@
             "艾米丽雅",
             "海伦娜"
           ]
+        },
+        "身份": {
+          "default": "魔王",
+          "type": "string"
+        },
+        "阵营偏向": {
+          "default": "混沌邪恶",
+          "type": "string"
+        },
+        "魔力同步率": {
+          "default": 0,
+          "type": "number"
+        }
+      }
+    },
+    "角色": {
+      "default": {},
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "default": {
+          "好感度": 50,
+          "服从度": 0,
+          "堕落度": 0,
+          "契约阶段": "无"
+        },
+        "type": "object",
+        "properties": {
+          "好感度": {
+            "default": 50,
+            "type": "number"
+          },
+          "服从度": {
+            "default": 0,
+            "type": "number"
+          },
+          "堕落度": {
+            "default": 0,
+            "type": "number"
+          },
+          "契约阶段": {
+            "default": "无",
+            "type": "string"
+          }
         }
       }
     },
@@ -126,19 +138,16 @@
           "type": "string"
         },
         "关键事件": {
+          "default": {},
           "type": "object",
           "propertyNames": {
             "type": "string"
           },
           "additionalProperties": {
-            "default": false,
             "type": "boolean"
           }
         }
-      },
-      "required": [
-        "关键事件"
-      ]
+      }
     }
   }
 }
