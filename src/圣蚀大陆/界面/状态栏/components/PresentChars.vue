@@ -13,17 +13,20 @@
         <template v-if="!row.isProtagonist">
           <span class="msb-stat">
             <i class="fa-solid fa-heart" style="color: #ff6b9d"></i>
+            <span class="msb-stat-label">好感度</span>
             <span class="msb-bar-wrap msb-bar-sm"><span class="msb-bar msb-bar-aff" :style="{ width: row.aff + '%' }"></span></span>
             <span class="msb-stat-val">{{ row.aff }}</span>
           </span>
           <span class="msb-stat">
             <i class="fa-solid fa-circle-dot" style="color: #c77dff"></i>
+            <span class="msb-stat-label">服从度</span>
             <span class="msb-bar-wrap msb-bar-sm"><span class="msb-bar msb-bar-obey" :style="{ width: row.obey + '%' }"></span></span>
             <span class="msb-stat-val">{{ row.obey }}</span>
           </span>
         </template>
         <span class="msb-stat">
-          <i class="fa-solid fa-skull" style="color: #ff5252"></i>
+          <i class="fa-solid fa-moon" style="color: #ff5252"></i>
+          <span class="msb-stat-label">堕落度</span>
           <span class="msb-bar-wrap msb-bar-sm"><span class="msb-bar msb-bar-corr" :style="{ width: row.corr + '%' }"></span></span>
           <span class="msb-stat-val">{{ row.corr }}</span>
         </span>
